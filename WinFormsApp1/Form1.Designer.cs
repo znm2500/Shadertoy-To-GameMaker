@@ -39,6 +39,8 @@
             radioButton2 = new RadioButton();
             textBox4 = new TextBox();
             label4 = new Label();
+            label5 = new Label();
+            textBox5 = new TextBox();
             SuspendLayout();
             // 
             // textBox1
@@ -61,18 +63,18 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(476, 44);
+            textBox2.Location = new Point(920, 46);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
             textBox2.ScrollBars = ScrollBars.Both;
-            textBox2.Size = new Size(432, 366);
+            textBox2.Size = new Size(432, 245);
             textBox2.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(476, 21);
+            label2.Location = new Point(920, 23);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 3;
@@ -80,18 +82,18 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(913, 46);
+            textBox3.Location = new Point(482, 46);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.ReadOnly = true;
             textBox3.ScrollBars = ScrollBars.Both;
-            textBox3.Size = new Size(432, 582);
+            textBox3.Size = new Size(432, 366);
             textBox3.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(913, 23);
+            label3.Location = new Point(482, 23);
             label3.Name = "label3";
             label3.Size = new Size(58, 20);
             label3.TabIndex = 5;
@@ -145,11 +147,32 @@
             label4.TabIndex = 10;
             label4.Text = "shader名称";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(920, 294);
+            label5.Name = "label5";
+            label5.Size = new Size(69, 20);
+            label5.TabIndex = 11;
+            label5.Text = "创建代码";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(920, 317);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.ReadOnly = true;
+            textBox5.ScrollBars = ScrollBars.Both;
+            textBox5.Size = new Size(432, 311);
+            textBox5.TabIndex = 12;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1363, 657);
+            Controls.Add(textBox5);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(textBox4);
             Controls.Add(radioButton2);
@@ -180,5 +203,7 @@
         private RadioButton radioButton2;
         private TextBox textBox4;
         private Label label4;
+        private Label label5;
+        private TextBox textBox5;
     }
 }

@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>GameMaker.ico</ApplicationIcon>
+    <AssemblyName>Shadertoy to Gamemaker</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="GameMaker.ico" />
+  </ItemGroup>
 
 </Project>

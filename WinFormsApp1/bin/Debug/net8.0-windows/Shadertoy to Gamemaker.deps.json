@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "WinFormsApp1/1.0.0": {
+      "Shadertoy to Gamemaker/1.0.0": {
         "runtime": {
-          "WinFormsApp1.dll": {}
+          "Shadertoy to Gamemaker.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "WinFormsApp1/1.0.0": {
+    "Shadertoy to Gamemaker/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

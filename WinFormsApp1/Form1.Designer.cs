@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             textBox1 = new TextBox();
             label1 = new Label();
             textBox2 = new TextBox();
@@ -184,8 +185,11 @@
             Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(textBox1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Shadertoy to Gamemaker";
             ResumeLayout(false);
             PerformLayout();
         }

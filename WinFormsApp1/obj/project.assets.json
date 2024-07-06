@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\shadertoy\\WinFormsApp1\\WinFormsApp1\\WinFormsApp1.csproj",
-      "projectName": "WinFormsApp1",
-      "projectPath": "E:\\shadertoy\\WinFormsApp1\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\OneDrive\\文档\\GitHub\\shadertoy-to-gamemaker\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectName": "Shadertoy to Gamemaker",
+      "projectPath": "C:\\Users\\USER\\OneDrive\\文档\\GitHub\\shadertoy-to-gamemaker\\WinFormsApp1\\WinFormsApp1.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "E:\\shadertoy\\WinFormsApp1\\WinFormsApp1\\obj\\",
+      "outputPath": "C:\\Users\\USER\\OneDrive\\文档\\GitHub\\shadertoy-to-gamemaker\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

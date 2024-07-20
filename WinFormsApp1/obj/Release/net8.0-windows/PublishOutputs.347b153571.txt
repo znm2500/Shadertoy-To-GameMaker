@@ -1,0 +1,5 @@
+C:\Users\USER\OneDrive\桌面\Shadertoy to Gamemaker.exe
+C:\Users\USER\OneDrive\桌面\Shadertoy to Gamemaker.dll
+C:\Users\USER\OneDrive\桌面\Shadertoy to Gamemaker.deps.json
+C:\Users\USER\OneDrive\桌面\Shadertoy to Gamemaker.runtimeconfig.json
+C:\Users\USER\OneDrive\桌面\Shadertoy to Gamemaker.pdb

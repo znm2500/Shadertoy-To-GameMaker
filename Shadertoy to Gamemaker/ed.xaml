@@ -1,0 +1,65 @@
+﻿<Window x:Class="Shadertoy_to_Gamemaker.ed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shadertoy_to_Gamemaker"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="导入代码" Height="480" Width="813"
+        ResizeMode="CanMinimize"
+        >
+    <Window.Background>
+
+        <ImageBrush x:Name="bg"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,0">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="334*"/>
+            <ColumnDefinition Width="559*"/>
+        </Grid.ColumnDefinitions>
+        <ui:Button Icon="{ui:SymbolIcon Symbol=ArrowExportUp24}" Content="导出" Grid.Column="1" Margin="378,402,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click"/>
+        <Frame Name="myframe" NavigationUIVisibility="Hidden" Margin="217,22,34,48" Background="#19FFFFFF" Grid.ColumnSpan="2"/>
+
+        <Grid Margin="26,22,-199,88" Grid.ColumnSpan="2">
+            <TreeView AllowDrop="True" Margin="10,0,827,-42" Background="#19FFFFFF">
+                <TreeViewItem x:Name="common" Header="Common" IsExpanded="True" FontFamily="Segoe UI Variable Display" >
+
+                </TreeViewItem>
+                <TreeViewItem Header="Image" IsExpanded="True" FontFamily="Segoe UI Variable Display" Name="image">
+                    <TreeViewItem Header="iChannel0" FontFamily="Segoe UI Variable Display" Name="I0"/>
+                    <TreeViewItem Header="iChannel1" FontFamily="Segoe UI Variable Display" Name="I1"/>
+                    <TreeViewItem Header="iChannel2" FontFamily="Segoe UI Variable Display" Name="I2"/>
+                    <TreeViewItem Header="iChannel3" FontFamily="Segoe UI Variable Display" Name="I3"/>
+                </TreeViewItem>
+
+                <TreeViewItem Header="BufferA" IsExpanded="True" FontFamily="Segoe UI Variable Display" Name="ba">
+                    <TreeViewItem Header="iChannel0" FontFamily="Segoe UI Variable Display" Name="A0"/>
+                    <TreeViewItem Header="iChannel1" FontFamily="Segoe UI Variable Display" Name="A1"/>
+                    <TreeViewItem Header="iChannel2" FontFamily="Segoe UI Variable Display" Name="A2"/>
+                    <TreeViewItem Header="iChannel3" FontFamily="Segoe UI Variable Display" Name="A3"/>
+                </TreeViewItem>
+                <TreeViewItem Header="BufferB" IsExpanded="True" FontFamily="Segoe UI Variable Display" Name="bb">
+                    <TreeViewItem Header="iChannel0" FontFamily="Segoe UI Variable Display" Name="B0"/>
+                    <TreeViewItem Header="iChannel1" FontFamily="Segoe UI Variable Display" Name="B1"/>
+                    <TreeViewItem Header="iChannel2" FontFamily="Segoe UI Variable Display" Name="B2"/>
+                    <TreeViewItem Header="iChannel3" FontFamily="Segoe UI Variable Display" Name="B3"/>
+                </TreeViewItem>
+                <TreeViewItem Header="BufferC" IsExpanded="True" FontFamily="Segoe UI Variable Display" Name="bc">
+                    <TreeViewItem Header="iChannel0" FontFamily="Segoe UI Variable Display" Name="C0"/>
+                    <TreeViewItem Header="iChannel1" FontFamily="Segoe UI Variable Display" Name="C1"/>
+                    <TreeViewItem Header="iChannel2" FontFamily="Segoe UI Variable Display" Name="C2"/>
+                    <TreeViewItem Header="iChannel3" FontFamily="Segoe UI Variable Display" Name="C3"/>
+                </TreeViewItem>
+                <TreeViewItem Header="BufferD" IsExpanded="True" FontFamily="Segoe UI Variable Display" Name="bd">
+                    <TreeViewItem Header="iChannel0" FontFamily="Segoe UI Variable Display" Name="D0"/>
+                    <TreeViewItem Header="iChannel1" FontFamily="Segoe UI Variable Display" Name="D1"/>
+                    <TreeViewItem Header="iChannel2" FontFamily="Segoe UI Variable Display" Name="D2"/>
+                    <TreeViewItem Header="iChannel3" FontFamily="Segoe UI Variable Display" Name="D3"/>
+                </TreeViewItem>
+            </TreeView>
+        </Grid>
+        
+    </Grid>
+</Window>

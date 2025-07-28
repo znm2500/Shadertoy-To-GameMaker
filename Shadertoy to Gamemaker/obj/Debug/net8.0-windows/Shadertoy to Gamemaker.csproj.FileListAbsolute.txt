@@ -1,0 +1,33 @@
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.csproj.AssemblyReference.cache
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_MarkupCompile.cache
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_MarkupCompile.lref
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.exe
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.deps.json
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.runtimeconfig.json
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.pdb
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Wpf.Ui.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Wpf.Ui.Abstractions.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\App.g.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\MainWindow.baml
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.g.resources
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.AssemblyInfoInputs.cache
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.AssemblyInfo.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.csproj.CoreCompileInputs.cache
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shaderto.B99D7936.Up2Date
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\refint\Shadertoy to Gamemaker.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.pdb
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.genruntimeconfig.cache
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ref\Shadertoy to Gamemaker.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\App.baml
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ed.g.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ed.baml
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Convert.g.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Convert.baml
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channel.g.cs
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channel.baml
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_Content.g.cs

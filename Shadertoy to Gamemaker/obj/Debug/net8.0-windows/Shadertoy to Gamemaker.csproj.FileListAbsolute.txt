@@ -31,3 +31,40 @@ D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channe
 D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channel.baml
 D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 D:\Shadertoy to Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_Content.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.exe
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.deps.json
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.runtimeconfig.json
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Shadertoy to Gamemaker.pdb
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Wpf.Ui.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\Wpf.Ui.Abstractions.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.csproj.AssemblyReference.cache
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channel.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Convert.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ed.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_Content.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_MarkupCompile.cache
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker_MarkupCompile.lref
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\App.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\channel.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Convert.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ed.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.g.resources
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.AssemblyInfoInputs.cache
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.AssemblyInfo.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.csproj.CoreCompileInputs.cache
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.sourcelink.json
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shaderto.B99D7936.Up2Date
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\refint\Shadertoy to Gamemaker.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.pdb
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Shadertoy to Gamemaker.genruntimeconfig.cache
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\ref\Shadertoy to Gamemaker.dll
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Warning.g.cs
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\obj\Debug\net8.0-windows\Warning.baml
+C:\Users\Weaver\Documents\GitHub\Shadertoy-To-Gamemaker\Shadertoy to Gamemaker\bin\Debug\net8.0-windows\NCalc.dll

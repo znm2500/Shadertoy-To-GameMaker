@@ -11,5 +11,8 @@
     <Compile Update="ed.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Warning.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -14,7 +14,7 @@
         <ImageBrush x:Name="bg"/>
     </Window.Background>
     <Grid Margin="0,0,0,0">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="334*"/>
             <ColumnDefinition Width="559*"/>
@@ -60,6 +60,7 @@
                 </TreeViewItem>
             </TreeView>
         </Grid>
-        
+        <ui:Button Icon="{ui:SymbolIcon Symbol=ArchiveArrowBack16}" Content="返回" Margin="39,402,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click_1" />
+
     </Grid>
 </Window>

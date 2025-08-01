@@ -32,7 +32,7 @@
                 <Label Grid.Row="1" Content="Shader类型：" Margin="0,71,0,111" FontFamily="Microsoft YaHei UI" ToolTip="类型为效果，基础纹理为游戏画面；类型为效果，基础纹理为普通的黑色方形。类型不同使用坐标系有差别。"/>
             <StackPanel Grid.Row="1" Margin="0,96,0,-96" Grid.ColumnSpan="2">
                 <RadioButton Content="效果" GroupName="radio_group_one" IsChecked="True" Name="r1"/>
-                <RadioButton Content="图案" GroupName="radio_group_one" />
+                <RadioButton Content="图案" GroupName="radio_group_one" Name="r2"/>
 
             </StackPanel>
 

@@ -469,6 +469,14 @@ void main()
             
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Converter.bf = [false, false, false, false];
+            new MainWindow().Show();
+            this.Close();
+            
+        }
+
         private void c_Convert(object sender, RoutedEventArgs e)
         {
             

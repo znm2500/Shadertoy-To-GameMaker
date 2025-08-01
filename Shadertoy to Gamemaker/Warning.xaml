@@ -1,0 +1,32 @@
+﻿<Window x:Class="Shadertoy_to_Gamemaker.Warning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shadertoy_to_Gamemaker"
+        mc:Ignorable="d"
+        Title="注意事项" Height="354" Width="595" ResizeMode="CanMinimize">
+    <Window.Background>
+        <ImageBrush x:Name="bg"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,114">
+
+        <TextBlock Text="注意事项" Foreground="White" FontSize="36" Margin="35,10,218,-10" Grid.RowSpan="2" Grid.Column="1"/>
+        <TextBlock Text="● 为保证原Shader作者权益，请在转换后于代码注释中标注Shader出处与作者信息！" Foreground="White" Margin="40,67,40,-67" FontSize="20" RenderTransformOrigin="0.5,0.5" TextWrapping="WrapWithOverflow" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <TextBlock Text="● 该软件为免费软件，若遇到不良商家售卖该软件，请及时举报！" Foreground="White" Margin="40,123,40,-123" FontSize="20" RenderTransformOrigin="0.5,0.5" TextWrapping="WrapWithOverflow" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <TextBlock  Foreground="White" Margin="40,182,40,-181" FontSize="20" RenderTransformOrigin="0.5,0.5" TextWrapping="WrapWithOverflow" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Run Text="● 该软件已于Github开源："/>
+            <Hyperlink NavigateUri="https://github.com/znm2500/Shadertoy-To-Gamemaker" Foreground="#FF76B6F6" RequestNavigate="Hyperlink_RequestNavigate">
+        https://github.com/znm2500/Shadertoy-To-Gamemaker   
+        </Hyperlink>
+        </TextBlock>
+        <TextBlock Text="● 如遇Bug，请及时向作者联系：znm2500@163.com" Foreground="White" Margin="40,247,40,-246" FontSize="20" RenderTransformOrigin="0.5,0.5" TextWrapping="WrapWithOverflow"/>
+        <TextBlock  Foreground="White" Margin="40,283,40,-531" FontSize="20" RenderTransformOrigin="0.5,0.5" TextWrapping="WrapWithOverflow">
+        <Run Text="● 作者B站："/>
+                <Hyperlink NavigateUri="https://space.bilibili.com/405694829" Foreground="#FF76B6F6" RequestNavigate="Hyperlink_RequestNavigate">
+早尼玛awa  
+</Hyperlink>
+
+        </TextBlock>
+    </Grid>
+</Window>

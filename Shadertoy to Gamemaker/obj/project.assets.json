@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
+      "ncalc/1.3.8": {
+        "type": "package",
+        "compile": {
+          "lib/NCalc.dll": {}
+        },
+        "runtime": {
+          "lib/NCalc.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -50,6 +59,18 @@
     }
   },
   "libraries": {
+    "ncalc/1.3.8": {
+      "sha512": "T3kt6mWc70x3Ex5PxOmuILy563CGAdoAnyknXX7Du2/SXs2T94hNwc5CVwZcwCu5/A2ZBZhnHnc5dpcqCRGQ0A==",
+      "type": "package",
+      "path": "ncalc/1.3.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/NCalc.dll",
+        "ncalc.1.3.8.nupkg.sha512",
+        "ncalc.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -155,7 +176,8 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "Newtonsoft.Json >= 13.0.3",
-      "WPF-UI >= 4.0.3"
+      "WPF-UI >= 4.0.3",
+      "ncalc >= 1.3.8"
     ]
   },
   "packageFolders": {
@@ -165,11 +187,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+      "projectUniqueName": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
       "projectName": "Shadertoy to Gamemaker",
-      "projectPath": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+      "projectPath": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
       "packagesPath": "C:\\Users\\Weaver\\.nuget\\packages\\",
-      "outputPath": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\obj\\",
+      "outputPath": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -215,6 +237,10 @@
           "WPF-UI": {
             "target": "Package",
             "version": "[4.0.3, )"
+          },
+          "ncalc": {
+            "target": "Package",
+            "version": "[1.3.8, )"
           }
         },
         "imports": [
@@ -239,5 +265,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1”而不是项目目标框架“net8.0-windows7.0”还原包“ncalc 1.3.8”。此包可能与项目不完全兼容。",
+      "libraryId": "ncalc",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }

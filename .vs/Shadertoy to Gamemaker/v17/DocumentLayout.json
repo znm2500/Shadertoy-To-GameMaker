@@ -1,61 +1,68 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Shadertoy to Gamemaker\\",
+  "WorkspaceRootPath": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\ed.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\ed.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\warning.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\warning.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\ed.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\ed.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\warning.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\warning.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\channel.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\ed.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\ed.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\convert.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\convert.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\channel.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\channel.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\ed.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\ed.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\convert.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\convert.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\convert.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\convert.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\convert.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\channel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\channel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\channel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\convert.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\convert.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\convert.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|d:\\shadertoy to gamemaker\\shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|c:\\users\\weaver\\documents\\github\\shadertoy-to-gamemaker\\shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F77A9B93-5558-4DB7-8120-5643CA9DD298}|Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj|solutionrelative:shadertoy to gamemaker\\shadertoy to gamemaker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\AssemblyInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Shadertoy to Gamemaker\\AssemblyInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\AssemblyInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -65,7 +72,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -73,91 +80,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "Warning.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Warning.xaml.cs",
+              "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Warning.xaml.cs",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Warning.xaml.cs",
+              "RelativeToolTip": "Shadertoy to Gamemaker\\Warning.xaml.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAIBJwBsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T09:14:16.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Warning.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Warning.xaml",
+              "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Warning.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Warning.xaml",
+              "RelativeToolTip": "Shadertoy to Gamemaker\\Warning.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-31T09:11:10.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Microsoft.WinFX.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
               "ViewState": "AgIAALQCAAAAAAAAAAAowMICAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2025-07-26T14:57:56.949Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Shadertoy to Gamemaker",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "RelativeToolTip": "Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-07-26T14:56:00.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-26T14:56:00.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "channel.xaml.cs",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\channel.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\channel.xaml.cs",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\channel.xaml.cs",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\channel.xaml.cs",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\channel.xaml.cs",
               "RelativeToolTip": "Shadertoy to Gamemaker\\channel.xaml.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAAswC4AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T02:13:15.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T02:13:15.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "channel.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\channel.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\channel.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\channel.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\channel.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\channel.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\channel.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-24T01:36:15.056Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\AssemblyInfo.cs",
               "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\AssemblyInfo.cs",
-              "RelativeToolTip": "Shadertoy to Gamemaker\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T13:47:20.72Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "Convert.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Convert.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\Convert.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-23T10:09:40.025Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Convert.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Convert.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\Convert.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-23T10:07:19.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Convert.xaml.cs",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml.cs",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Convert.xaml.cs",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml.cs",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Convert.xaml.cs",
               "RelativeToolTip": "Shadertoy to Gamemaker\\Convert.xaml.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -165,72 +192,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ed.xaml.cs",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\ed.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\ed.xaml.cs",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\ed.xaml.cs",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\ed.xaml.cs",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\ed.xaml.cs",
               "RelativeToolTip": "Shadertoy to Gamemaker\\ed.xaml.cs",
-              "ViewState": "AgIAAHkBAAAAAAAAAAAgwIYBAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAmwNoBAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T07:33:44.463Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "ed.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\ed.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\ed.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\ed.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\ed.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\ed.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\ed.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-23T07:33:16.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-23T07:33:16.575Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "App.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\App.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\App.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\App.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\App.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\App.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-23T05:28:15.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-23T05:28:15.739Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml.cs",
               "RelativeToolTip": "Shadertoy to Gamemaker\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAAAHABAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAACQBAAAAAAAAAAAswC0BAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T05:19:50.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\MainWindow.xaml",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\MainWindow.xaml",
               "RelativeToolTip": "Shadertoy to Gamemaker\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-23T05:19:55.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-23T05:19:55.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Shadertoy to Gamemaker.csproj",
-              "DocumentMoniker": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+              "DocumentMoniker": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "RelativeDocumentMoniker": "Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
-              "ToolTip": "D:\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
+              "ToolTip": "C:\\Users\\Weaver\\Documents\\GitHub\\Shadertoy-To-Gamemaker\\Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "RelativeToolTip": "Shadertoy to Gamemaker\\Shadertoy to Gamemaker.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",

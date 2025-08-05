@@ -227,7 +227,7 @@ namespace Shadertoy_to_Gamemaker
             string houz = "";
             bool[] finished = [false, false, false, false, false];
             StringBuilder ev_f = new StringBuilder(), ev_c = new StringBuilder(), ev_d = new StringBuilder(), dp = new StringBuilder();
-            if (code.Contains("#if")) MessageBox.Show("您的代码中存在宏判断，请自行对其进行清除！");
+         
             switch (scr)
             {
                 case "BufferA":

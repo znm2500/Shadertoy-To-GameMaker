@@ -266,12 +266,7 @@ namespace Shadertoy_to_Gamemaker
                     break;
             }
             StringBuilder pre=new StringBuilder($"varying vec4 v_vColour;\r\nvarying vec2 v_vTexcoord;\r\nvec2 iMouse=vec2(0.,0.);\r\nuniform float iTime;\r\nuniform vec2 iResolution;\r\nuniform float iFrame;\r\n");
-            if (ef) {
-                code = Regex.Replace(code, @"fragCoord\.xy\s*/\s*iResolution.xy", "v_vTexcoord");
-                code = Regex.Replace(code, @"fragCoord\s*/\s*iResolution.xy", "v_vTexcoord");
-            }
             
-
             // 提取 mainImage 的参数名
             var paramMatch = Regex.Match(code, @"mainImage\s*\(\s*out\s+\w+\s+(\w+)\s*,\s*in\s+vec2\s+(\w+)\s*\)");
 
@@ -294,20 +289,25 @@ namespace Shadertoy_to_Gamemaker
 
                     // 替换回原代码
                     code = code.Substring(0, bodyMatch.Groups["body"].Index) +
-                           newBody +
+                           "\r\n\tfragColor.a = 1.;" + newBody + "\tfragColor *= v_vColour;\r\n" +
                            code.Substring(bodyMatch.Groups["body"].Index + bodyMatch.Groups["body"].Length);
                 }
             }
 
             
             code = Regex.Replace(code, @"mainImage\(.*?\)", "main()",RegexOptions.Singleline);
+            if (ef)
+            {
+                code = Regex.Replace(code, @"fragCoord\.xy\s*/\s*iResolution.xy", "v_vTexcoord");
+                code = Regex.Replace(code, @"fragCoord\s*/\s*iResolution.xy", "v_vTexcoord");
+            }
             code = code.Replace("fragColor", "gl_FragColor");
             code = code.Replace("fragCoord.xy", "vec2(gl_FragCoord.x, iResolution.y - gl_FragCoord.y)");
             code = code.Replace("fragCoord", "vec2(gl_FragCoord.x, iResolution.y - gl_FragCoord.y)");
             code = code.Replace("fragCoord.y", "(iResolution.y - gl_FragCoord.y)"); 
             code = code.Replace("texture", "texture2D");
             code = code.Replace("texture2DLod", "texture2D");
-            code = Regex.Replace(code, @"(?<=main\(\)\s*\{).*(?=\})", m => $"\r\n\tgl_FragColor.a = 1.0;{m.Groups[0].Value}\tgl_FragColor *= v_vColour;\r\n",RegexOptions.Singleline);
+            
             
            // code=RenameAllOverloads(code);
             var matches = Regex.Matches(code, @"uniform.+;");

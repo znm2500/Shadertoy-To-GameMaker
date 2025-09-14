@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadertoy To GameMaker</title>
+  <link rel="icon" href="/Shadertoy-To-GameMaker/tubiao.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/Shadertoy-To-GameMaker/tubiao.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.bootcdn.net/ajax/libs/jszip/3.10.1/jszip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <style>
+    /* 添加弹窗样式 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-container {
+      background-color: var(--panel-color);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 500px;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .modal-header {
+      background: linear-gradient(to right, var(--accent-color), #757575);
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    .modal-header h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 0;
+      flex: 1;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-content {
+      padding: 25px 20px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .modal-footer {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: linear-gradient(to right, var(--accent-color), #757575);
+      color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .demo-btn {
+      margin-left: 15px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      background: linear-gradient(to right, #9e9e9e, #bdbdbd);
+      border-radius: 6px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-speed) ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .modal-container {
+        width: 95%;
+        margin: 10px;
+      }
+
+      .demo-btn span {
+        display: none;
+      }
+    }
+
+    :root {
+      --bg-color: #f5f5f5;
+      --panel-color: #ffffff;
+      --border-color: #e0e0e0;
+      --accent-color: #616161;
+      --text-color: #424242;
+      --highlight-color: #eeeeee;
+      --primary-color: rgba(3, 157, 91, 1);
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", "Microsoft YaHei UI", sans-serif;
+    }
+
+    .xaml-container {
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .xaml-combo {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-color);
+      font-size: 1rem;
+    }
+
+    .xaml-button {
+      padding: 10px 15px;
+      background: linear-gradient(to right, var(--accent-color), #757575);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      width: 120px;
+    }
+
+    .xaml-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .xaml-image {
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #9e9e9e;
+      min-height: 200px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .xaml-image.drag-over {
+      border: 2px dashed var(--primary-color);
+      background-color: rgba(3, 157, 91, 0.1);
+    }
+
+    .xaml-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .xaml-textbox {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-color);
+      font-size: 1rem;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: linear-gradient(to bottom right, #f9f9f9, #eaeaea);
+    }
+
+    .container {
+      background-color: var(--panel-color);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 1400px;
+      overflow: hidden;
+      animation: container-appear 0.5s ease-out;
+      display: flex;
+      flex-direction: column;
+      min-height: 800px;
+      /* 设置容器最小高度 */
+    }
+
+    @keyframes container-appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(to right, var(--accent-color), #757575);
+      color: white;
+      padding: 20px 30px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+    }
+
+    .header i {
+      font-size: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .content {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+      flex: 1;
+      /* 让内容区域占据剩余空间 */
+      overflow: auto;
+      /* 内容过多时可滚动 */
+    }
+
+    .wizard-step {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      right: 30px;
+      bottom: 100px;
+      /* 留出底部按钮空间 */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-speed) ease-in-out,
+        visibility var(--transition-speed) ease-in-out,
+        transform var(--transition-speed) ease-in-out;
+      transform: translateY(20px);
+      overflow: auto;
+      /* 步骤内容过多时可滚动 */
+    }
+
+    .wizard-step.active {
+      opacity: 1;
+      height: 90%;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: 555;
+      font-size: 1.05rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-color);
+      transition: all 0.3s ease;
+      font-size: 1.05rem;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .radio-option {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      font-size: 1.05rem;
+    }
+
+    .radio-option:hover {
+      background-color: var(--highlight-color);
+      transform: translateX(5px);
+    }
+
+    .radio-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary-color);
+    }
+
+    .tree-view {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      background-color: var(--bg-color);
+      height: 99%;
+      width: 250px;
+      overflow-y: auto;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .tree-view:hover {
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .tree-item {
+      margin-left: 18px;
+      padding: 10px 0;
+      position: relative;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tree-items {
+      margin-left: 18px;
+      padding: 10px 0;
+      position: relative;
+      font-size: 1.05rem;
+      cursor: pointer;
+    }
+
+    .tree-item:hover {
+      color: var(--primary-color);
+      background-color: var(--highlight-color);
+    }
+
+    .tree-item.active {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .tree-item::before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      height: 1px;
+      width: 12px;
+      background-color: var(--border-color);
+    }
+
+    .tree-header {
+      font-weight: 500;
+      margin: 12px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .tree-header:hover {
+      background-color: var(--highlight-color);
+      padding-left: 15px;
+    }
+
+    .tree-header::before {
+      content: "►";
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .tree-header.expanded::before {
+      transform: rotate(90deg);
+    }
+
+    .tree-content {
+      margin-left: 30px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+
+    .tree-content.expanded {
+      max-height: 600px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 30px;
+      /* 调整内边距 */
+      border-top: 1px solid var(--border-color);
+      background-color: var(--panel-color);
+      position: sticky;
+      /* 固定在底部 */
+      bottom: 0;
+      z-index: 10;
+      /* 确保在内容上方 */
+    }
+
+    button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(to right, var(--accent-color), #757575);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:active {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button.back {
+      background: linear-gradient(to right, #9e9e9e, #bdbdbd);
+    }
+
+    .two-column-layout {
+      display: flex;
+      gap: 30px;
+      height: 100%;
+    }
+
+    .column {
+      flex: 1;
+    }
+
+    .preview-container {
+      height: 99%;
+      top: 5px;
+      position: relative;
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .preview-container:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .shader-preview {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .preview-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #9e9e9e;
+      flex-direction: column;
+      gap: 20px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .preview-placeholder i {
+      font-size: 3rem;
+      opacity: 0.7;
+    }
+
+    .preview-placeholder p {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .preview-placeholder small {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted #ccc;
+      cursor: help;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 250px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 10px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -125px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .progress-bar {
+      display: none;
+      justify-content: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 150px;
+    }
+
+    .progress-step:not(:last-child):after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      right: -75px;
+      width: 150px;
+      height: 2px;
+      background-color: var(--border-color);
+      z-index: 1;
+    }
+
+    .step-number {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: var(--border-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      z-index: 2;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .progress-step.active .step-number {
+      background-color: var(--primary-color);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(3, 157, 91, 0.5);
+    }
+
+    .progress-step.completed .step-number {
+      background-color: var(--accent-color);
+    }
+
+    .step-label {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      text-align: center;
+    }
+
+    /* Convert.xaml转换后的样式 */
+    .convert-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 15px;
+      height: 100%;
+      padding: 10px;
+    }
+
+    .input-label,
+    .output-label {
+      font-weight: 500;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-label {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .output-label {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .convert-btn {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      padding: 8px 16px;
+      background: linear-gradient(to right, var(--primary-color), #039d5b);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .convert-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .code-input,
+    .code-output {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: "Courier New", monospace;
+      font-size: 0.9rem;
+      resize: none;
+      background-color: var(--bg-color);
+      transition: all 0.3s ease;
+    }
+
+    .code-input {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .code-output {
+      grid-column: 2;
+      grid-row: 2;
+      background-color: #f9f9f9;
+    }
+
+    .code-input:focus,
+    .code-output:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(3, 157, 91, 0.2);
+    }
+
+    @media (max-width: 992px) {
+      .container {
+        max-width: 900px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .two-column-layout {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .container {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+        min-height: auto;
+      }
+
+      .header {
+        padding: 15px;
+      }
+
+      .content {
+        padding: 15px;
+      }
+
+      .wizard-step {
+        bottom: 80px;
+      }
+
+      .tree-view,
+      .preview-container {
+        height: 300px;
+      }
+
+      .progress-step:not(:last-child):after {
+        display: none;
+      }
+
+      .progress-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button-group {
+        padding: 15px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      .convert-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+      }
+
+      .input-label {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .output-label {
+        grid-column: 1;
+        grid-row: 3;
+      }
+
+      .convert-btn {
+        grid-column: 1;
+        grid-row: 3;
+        justify-self: end;
+        margin-top: -40px;
+      }
+
+      .code-input {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .code-output {
+        grid-column: 1;
+        grid-row: 4;
+      }
+    }
+
+    .header .download-btn {
+      margin-left: auto;
+      /* 推到右侧 */
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      background: linear-gradient(to right, #757575, var(--accent-color));
+      border-radius: 6px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-speed) ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .header .download-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      .header .download-btn span {
+        display: none;
+        /* 小屏幕下只显示图标 */
+      }
+    }
+
+    .floating-icon {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 28px;
+      opacity: 0.1;
+      z-index: -1;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(20px, 40px) rotate(90deg);
+      }
+
+      50% {
+        transform: translate(40px, 0) rotate(180deg);
+      }
+
+      75% {
+        transform: translate(20px, -40px) rotate(270deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    .icon-1 {
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .icon-2 {
+      top: 70%;
+      right: 5%;
+      animation-delay: -5s;
+    }
+
+    .icon-3 {
+      bottom: 20%;
+      left: 10%;
+      animation-delay: -10s;
+    }
+
+    /* 语言切换按钮样式 */
+    .language-switcher {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-btn {
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .language-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-btn.active {
+      background-color: rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-icon icon-1"><i class="fas fa-code"></i></div>
+  <div class="floating-icon icon-2"><i class="fas fa-paint-brush"></i></div>
+  <div class="floating-icon icon-3"><i class="fas fa-gamepad"></i></div>
+
+  <div class="container">
+    <div class="header">
+      <i class="fas fa-sync-alt"></i>
+      <h1 data-i18n="title">Shadertoy To GameMaker</h1>
+
+      <!-- 语言切换按钮 -->
+      <div class="language-switcher">
+        <button class="language-btn active" data-lang="zh-CN">中文</button>
+        <button class="language-btn" data-lang="en">English</button>
+      </div>
+
+      <button class="download-btn" onclick="downloadDesktopApp()">
+        <i class="fas fa-download"></i>
+        <span data-i18n="downloadDesktop">下载桌面版</span>
+      </button>
+    </div>
+
+    <div class="content">
+      <div class="progress-bar">
+        <div class="progress-step active" id="step1-progress">
+          <div class="step-number">1</div>
+          <div class="step-label" data-i18n="step1Label">基本设置</div>
+        </div>
+        <div class="progress-step" id="step2-progress">
+          <div class="step-number">2</div>
+          <div class="step-label" data-i18n="step2Label">通道配置</div>
+        </div>
+        <div class="progress-step" id="step3-progress">
+          <div class="step-number">3</div>
+          <div class="step-label" data-i18n="step3Label">代码转换</div>
+        </div>
+      </div>
+
+      <div class="wizard-step active" id="step1">
+        <div class="input-group">
+          <label for="shaderName" data-i18n="shaderName">Shader名称</label>
+          <input type="text" id="shaderName" data-i18n-placeholder="shaderNamePlaceholder" placeholder="输入Shader名称" />
+        </div>
+
+        <div class="input-group">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label data-i18n="shaderType">
+              Shader类型
+            </label>
+            <span class="tooltip" style="position: relative;">
+              <i class="fas fa-question-circle"></i>
+              <span class="tooltiptext" data-i18n="shaderTypeTooltip" style="left: 200%; top: 30px; bottom: auto;">
+                类型为效果，基础纹理为游戏画面；类型为图案，基础纹理为普通的黑色方形。类型不同使用坐标系有差别。
+              </span>
+            </span>
+          </div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="typeEffect" name="shaderType" value="effect" checked />
+              <label for="typeEffect" data-i18n="typeEffect">效果</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="typePattern" name="shaderType" value="pattern" />
+              <label for="typePattern" data-i18n="typePattern">图案</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-step" id="step2">
+        <div class="two-column-layout">
+          <div class="tree-view">
+            <div class="tree-item" name="Common" id="choose">
+              <i class="fa fa-file-code"></i> <span data-i18n="common">Common</span>
+            </div>
+
+            <div class="tree-items">
+              <div class="tree-header expanded" name="Image" id="choose" onclick="toggleTreeItem(this)">
+                <i class="fas fa-folder-open"></i> <span data-i18n="image">Image</span>
+              </div>
+              <div class="tree-content expanded">
+                <div class="tree-item" name="i0" id="code">
+                  <i class="fa fa-file-image"></i> iChannel0
+                </div>
+                <div class="tree-item" name="i1" id="code">
+                  <i class="fa fa-file-image"></i> iChannel1
+                </div>
+                <div class="tree-item" name="i2" id="code">
+                  <i class="fa fa-file-image"></i> iChannel2
+                </div>
+                <div class="tree-item" name="i3" id="code">
+                  <i class="fa fa-file-image"></i> iChannel3
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-items">
+              <div class="tree-header expanded" onclick="toggleTreeItem(this)" name="BufferA" id="choose">
+                <i class="fas fa-folder-open"></i> BufferA
+              </div>
+              <div class="tree-content expanded">
+                <div class="tree-item" id="code" name="ba0">
+                  <i class="fa fa-file-image"></i> iChannel0
+                </div>
+                <div class="tree-item" id="code" name="ba1">
+                  <i class="fa fa-file-image"></i> iChannel1
+                </div>
+                <div class="tree-item" id="code" name="ba2">
+                  <i class="fa fa-file-image"></i> iChannel2
+                </div>
+                <div class="tree-item" id="code" name="ba3">
+                  <i class="fa fa-file-image"></i> iChannel3
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-items">
+              <div class="tree-header expanded" onclick="toggleTreeItem(this)" id="choose" name="BufferB">
+                <i class="fas fa-folder-open"></i> BufferB
+              </div>
+              <div class="tree-content expanded">
+                <div class="tree-item" id="code" name="bb0">
+                  <i class="fa fa-file-image"></i> iChannel0
+                </div>
+                <div class="tree-item" id="code" name="bb1">
+                  <i class="fa fa-file-image"></i> iChannel1
+                </div>
+                <div class="tree-item" id="code" name="bb2">
+                  <i class="fa fa-file-image"></i> iChannel2
+                </div>
+                <div class="tree-item" id="code" name="bb3">
+                  <i class="fa fa-file-image"></i> iChannel3
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-items">
+              <div class="tree-header expanded" onclick="toggleTreeItem(this)" id="choose" name="BufferC">
+                <i class="fas fa-folder-open"></i> BufferC
+              </div>
+              <div class="tree-content expanded">
+                <div class="tree-item" id="code" name="bc0">
+                  <i class="fa fa-file-image"></i> iChannel0
+                </div>
+                <div class="tree-item" id="code" name="bc1">
+                  <i class="fa fa-file-image"></i> iChannel1
+                </div>
+                <div class="tree-item" id="code" name="bc2">
+                  <i class="fa fa-file-image"></i> iChannel2
+                </div>
+                <div class="tree-item" id="code" name="bc3">
+                  <i class="fa fa-file-image"></i> iChannel3
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-items">
+              <div class="tree-header expanded" onclick="toggleTreeItem(this)" id="choose" name="BufferD">
+                <i class="fas fa-folder-open"></i> BufferD
+              </div>
+              <div class="tree-content expanded">
+                <div class="tree-item" id="code" name="bd0">
+                  <i class="fa fa-file-image"></i> iChannel0
+                </div>
+                <div class="tree-item" id="code" name="bd1">
+                  <i class="fa fa-file-image"></i> iChannel1
+                </div>
+                <div class="tree-item" id="code" name="bd2">
+                  <i class="fa fa-file-image"></i> iChannel2
+                </div>
+                <div class="tree-item" id="code" name="bd3">
+                  <i class="fa fa-file-image"></i> iChannel3
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="preview-container">
+              <div id="shaderIframe" class="shader-preview">
+                <div class="preview-placeholder">
+                  <i class="fas fa-mouse-pointer"></i>
+                  <p data-i18n="previewInstruction1">选择左侧的项目开始配置</p>
+                  <small data-i18n="previewInstruction2">点击Image/Buffer查看Shader代码，点击iChannel配置通道</small>
+                </div>
+                <div class="convert-container" style="display: none">
+                  <div class="input-label">
+                    <i class="fas fa-code"></i>
+                    <span data-i18n="inputCode">输入代码:</span>
+                  </div>
+
+                  <div class="output-label">
+                    <i class="fa fa-file-image"></i>
+                    <span data-i18n="outputCode">输出代码:</span>
+                  </div>
+
+                  <button class="convert-btn" id="convertBtn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span data-i18n="convert">转换</span>
+                  </button>
+
+                  <textarea class="code-input" id="inputCode" data-i18n-placeholder="inputCodePlaceholder"
+                    placeholder="粘贴Shadertoy代码到这里..."></textarea>
+
+                  <textarea class="code-output" id="outputCode" readonly data-i18n-placeholder="outputCodePlaceholder"
+                    placeholder="转换后的GameMaker代码将显示在这里..."></textarea>
+                </div>
+                <!-- XAML转换后的内容将在这里显示 -->
+                <div class="xaml-container" style="display: none">
+                  <select class="xaml-combo" id="xamlCombo">
+                    <option value="0" data-i18n="optionNone">无</option>
+                    <option value="1" data-i18n="optionBasicTexture">基本纹理</option>
+                    <option value="2" data-i18n="optionTexture">贴图</option>
+                    <option value="3" data-i18n="optionSurface">表面</option>
+                    <option value="4" data-i18n="optionGameScreen">游戏画面</option>
+                    <option value="5">BufferA</option>
+                    <option value="6">BufferB</option>
+                    <option value="7">BufferC</option>
+                    <option value="8">BufferD</option>
+                  </select>
+
+                  <button class="xaml-button" id="xamlImport" style="display: none">
+                    <i class="fas fa-file-import"></i>
+                    <span data-i18n="importTexture">导入贴图</span>
+                  </button>
+
+                  <div class="xaml-image" id="xamlImage">
+                    <img id="previewImage" style="display: none;" />
+                    <div id="imagePlaceholder">
+                      <i class="fas fa-cloud-upload-alt"
+                        style="font-size: 2rem; margin-bottom: 10px;margin-left: 76px;"></i>
+                      <p data-i18n="dragDropInstruction">拖放图片到这里或点击导入</p>
+                    </div>
+                  </div>
+
+                  <input type="text" class="xaml-textbox" id="xamlTextbox" style="display: none"
+                    data-i18n-placeholder="inputNamePlaceholder" placeholder="输入名称" />
+
+                  <!-- 隐藏的文件输入元素 -->
+                  <input type="file" id="textureFileInput" accept="image/*" style="display: none;" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard-step" id="step3">
+        <div class="input-group">
+          <label for="finalOutput" data-i18n="finalOutput">最终输出代码</label>
+          <textarea id="finalOutput" class="code-output" style="height: 300px" readonly
+            data-i18n-placeholder="finalOutputPlaceholder" placeholder="完整的GameMaker代码将显示在这里..."></textarea>
+        </div>
+
+        <div class="input-group">
+          <button class="convert-btn" style="margin-left: auto">
+            <i class="fas fa-download"></i>
+            <span data-i18n="exportCode">导出代码文件</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 将按钮组移到content外面，作为container的直接子元素 -->
+    <div class="button-group" id="step1-buttons">
+      <div></div>
+      <button onclick="showStep(2)">
+        <span data-i18n="nextStep">下一步</span>
+        <i class="fas fa-arrow-circle-right"></i>
+      </button>
+    </div>
+
+    <div class="button-group" id="step2-buttons" style="display: none">
+      <button class="back" onclick="showStep(1)">
+        <i class="fas fa-arrow-circle-left"></i>
+        <span data-i18n="previousStep">返回</span>
+      </button>
+      <button onclick="showStep(3)">
+        <span data-i18n="export">导出</span>
+        <i class="fas fa-download"></i>
+      </button>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <i class="fas fa-exclamation-circle"></i>
+        <h3 data-i18n="notification">提示信息</h3>
+        <button class="modal-close" onclick="hideModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-content">
+        <p id="modalMessage">这是一条提示信息。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn confirm" onclick="hideModal()" data-i18n="confirm">确认</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 语言包
+    const translations = {
+      'zh-CN': {
+        'title': 'Shadertoy To GameMaker',
+        'downloadDesktop': '下载桌面版',
+        'step1Label': '基本设置',
+        'step2Label': '通道配置',
+        'step3Label': '代码转换',
+        'shaderName': 'Shader名称',
+        'shaderNamePlaceholder': '输入Shader名称',
+        'shaderType': 'Shader类型',
+        'shaderTypeTooltip': '类型为效果，基础纹理为游戏画面；类型为图案，基础纹理为普通的黑色方形。类型不同使用坐标系有差别。',
+        'typeEffect': '效果',
+        'typePattern': '图案',
+        'common': 'Common',
+        'image': 'Image',
+        'previewInstruction1': '选择左侧的项目开始配置',
+        'previewInstruction2': '点击Image/Buffer查看Shader代码，点击iChannel配置通道',
+        'inputCode': '输入代码:',
+        'outputCode': '输出代码:',
+        'convert': '转换',
+        'inputCodePlaceholder': '粘贴Shadertoy代码到这里...',
+        'outputCodePlaceholder': '转换后的GameMaker代码将显示在这里...',
+        'optionNone': '无',
+        'optionBasicTexture': '基本纹理',
+        'optionTexture': '贴图',
+        'optionSurface': '表面',
+        'optionGameScreen': '游戏画面',
+        'importTexture': '导入贴图',
+        'dragDropInstruction': '拖放图片到这里或点击导入',
+        'inputNamePlaceholder': '输入名称',
+        'finalOutput': '最终输出代码',
+        'finalOutputPlaceholder': '完整的GameMaker代码将显示在这里...',
+        'exportCode': '导出代码文件',
+        'nextStep': '下一步',
+        'previousStep': '返回',
+        'export': '导出',
+        'notification': '提示信息',
+        'confirm': '确认',
+        'error': '错误',
+        'success': '成功',
+        'codeGenerated': '代码文件已生成并开始下载！',
+        'NameInvalid': '名称无效，请输入有效的名称。',
+        'NameToolong': '名称过长，请输入不超过20个字符的名称。',
+        'ShaderNameEmpty': 'Shader名称不能为空，请输入名称。',
+        'ShaderNameInvalid': 'Shader名称无效，请输入有效的名称。',
+        'ShaderNameToolong': 'Shader名称过长，请输入不超过20个字符的名称。',
+      },
+      'en': {
+        'title': 'Shadertoy To GameMaker',
+        'downloadDesktop': 'Download Desktop App',
+        'step1Label': 'Basic Settings',
+        'step2Label': 'Channel Configuration',
+        'step3Label': 'Code Conversion',
+        'shaderName': 'Shader Name',
+        'shaderNamePlaceholder': 'Enter shader name',
+        'shaderType': 'Shader Type',
+        'shaderTypeTooltip': 'Type "effect" uses game screen as base texture; type "pattern" uses a black square as base texture. Different types use different coordinate systems.',
+        'typeEffect': 'Effect',
+        'typePattern': 'Pattern',
+        'common': 'Common',
+        'image': 'Image',
+        'previewInstruction1': 'Select an item on the left to start configuration',
+        'previewInstruction2': 'Click Image/Buffer to view shader code, click iChannel to configure channels',
+        'inputCode': 'Input Code:',
+        'outputCode': 'Output Code:',
+        'convert': 'Convert',
+        'inputCodePlaceholder': 'Paste Shadertoy code here...',
+        'outputCodePlaceholder': 'Converted GameMaker code will appear here...',
+        'optionNone': 'None',
+        'optionBasicTexture': 'Basic Texture',
+        'optionTexture': 'Sprite',
+        'optionSurface': 'Surface',
+        'optionGameScreen': 'Game Screen',
+        'importTexture': 'Import Texture',
+        'dragDropInstruction': 'Drag & drop image here or click to import',
+        'inputNamePlaceholder': 'Enter name',
+        'finalOutput': 'Final Output Code',
+        'finalOutputPlaceholder': 'Complete GameMaker code will appear here...',
+        'exportCode': 'Export Code File',
+        'nextStep': 'Next',
+        'previousStep': 'Back',
+        'export': 'Export',
+        'notification': 'Notification',
+        'confirm': 'Confirm',
+        'error': 'Error',
+        'success': 'Success',
+        'codeGenerated': 'Code file has been generated and downloading started!',
+        'NameInvalid': 'Invalid name, please enter a valid name.',
+        'NameToolong': 'Name is too long, please enter a name with no more than 20 characters.',
+        'ShaderNameEmpty': 'Shader name cannot be empty, please enter a name.',
+        'ShaderNameInvalid': 'Invalid shader name, please enter a valid name.',
+        'ShaderNameToolong': 'Shader name is too long, please enter a name with no more than 20 characters.',
+      }
+    };
+
+    // 当前语言
+    let currentLanguage = 'zh-CN';
+
+    // 切换语言函数
+    function switchLanguage(lang) {
+      currentLanguage = lang;
+
+      // 更新所有文本内容
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      // 更新所有placeholder
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          element.placeholder = translations[lang][key];
+        }
+      });
+
+      // 更新按钮激活状态
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // 保存语言偏好
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // 初始化语言
+    document.addEventListener('DOMContentLoaded', function () {
+      // 检查是否有保存的语言偏好
+      const savedLanguage = localStorage.getItem('preferredLanguage');
+      if (savedLanguage) {
+        switchLanguage(savedLanguage);
+      }
+
+      // 添加语言切换事件监听
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          switchLanguage(this.getAttribute('data-lang'));
+        });
+      });
+    });
+
+    let currentStep = 1;
+    let _shadername = undefined;
+    let _shadertype = true; // false为效果，true为图案
+    let dic = {};
+    document.getElementById("typeEffect").addEventListener("change", function () {
+      if (this.checked) {
+        _shadertype = true;
+      }
+    });
+    document.getElementById("typePattern").addEventListener("change", function () {
+      if (this.checked) {
+        _shadertype = false;
+      }
+    });
+    const inputCode = document.getElementById("inputCode");
+    const outputCode = document.getElementById("outputCode");
+    const shaderIframe = document.getElementById("shaderIframe");
+    const previewPlaceholder = document.querySelector(".preview-placeholder");
+    const step1Buttons = document.getElementById("step1-buttons");
+    const step2Buttons = document.getElementById("step2-buttons");
+    const step3Buttons = document.getElementById("step3-buttons");
+    const items_choose = document.querySelectorAll("#choose");
+    const items_code = document.querySelectorAll("#code");
+    const ct_convert = document.querySelector(".convert-container");
+    const ct_xaml = document.querySelector(".xaml-container");
+    const ct_pre = document.querySelector(".preview-placeholder");
+    const shaderNameInput = document.getElementById("shaderName");
+    const xamlCombo = document.getElementById("xamlCombo");
+    const xamlImport = document.getElementById("xamlImport");
+    const xamlTextbox = document.getElementById("xamlTextbox");
+    const textureFileInput = document.getElementById("textureFileInput");
+    const previewImage = document.getElementById("previewImage");
+    const imagePlaceholder = document.getElementById("imagePlaceholder");
+    const xamlImage = document.getElementById("xamlImage");
+
+    let choose_name = undefined;
+    let code_name = undefined;
+    let spr_temp_yy = {
+      "resourceType": "GMSprite",
+      "resourceVersion": "1.0",
+      "name": "spr_temp",
+      "bbox_bottom": 31,
+      "bbox_left": 0,
+      "bbox_right": 63,
+      "bbox_top": 0,
+      "bboxMode": 0,
+      "collisionKind": 1,
+      "collisionTolerance": 0,
+      "DynamicTexturePage": false,
+      "edgeFiltering": false,
+      "For3D": true,
+      "frames": [
+        { "resourceType": "GMSpriteFrame", "resourceVersion": "1.1", "name": "5f5ca13e-a0d0-4bc9-843e-53775dc27efc", },
+      ],
+      "gridX": 0,
+      "gridY": 0,
+      "height": 32,
+      "HTile": false,
+      "layers": [
+        { "resourceType": "GMImageLayer", "resourceVersion": "1.0", "name": "eaecfd76-8a3a-4100-b464-84a6fc34ea07", "blendMode": 0, "displayName": "default", "isLocked": false, "opacity": 100.0, "visible": true, },
+      ],
+      "nineSlice": null,
+      "origin": 0,
+      "parent": {
+        "name": "Sprites",
+        "path": "folders/Sprites.yy",
+      },
+      "preMultiplyAlpha": false,
+      "sequence": {
+        "resourceType": "GMSequence",
+        "resourceVersion": "1.4",
+        "name": "spr_temp",
+        "autoRecord": true,
+        "backdropHeight": 768,
+        "backdropImageOpacity": 0.5,
+        "backdropImagePath": "",
+        "backdropWidth": 1366,
+        "backdropXOffset": 0.0,
+        "backdropYOffset": 0.0,
+        "events": { "resourceType": "KeyframeStore<MessageEventKeyframe>", "resourceVersion": "1.0", "Keyframes": [], },
+        "eventStubScript": null,
+        "eventToFunction": {},
+        "length": 1.0,
+        "lockOrigin": false,
+        "moments": { "resourceType": "KeyframeStore<MomentsEventKeyframe>", "resourceVersion": "1.0", "Keyframes": [], },
+        "playback": 1,
+        "playbackSpeed": 30.0,
+        "playbackSpeedType": 0,
+        "showBackdrop": true,
+        "showBackdropImage": false,
+        "timeUnits": 1,
+        "tracks": [
+          {
+            "resourceType": "GMSpriteFramesTrack", "resourceVersion": "1.0", "name": "frames", "builtinName": 0, "events": [], "inheritsTrackColour": true, "interpolation": 1, "isCreationTrack": false, "keyframes": {
+              "resourceType": "KeyframeStore<SpriteFrameKeyframe>", "resourceVersion": "1.0", "Keyframes": [
+                { "resourceType": "Keyframe<SpriteFrameKeyframe>", "resourceVersion": "1.0", "Channels": { "0": { "resourceType": "SpriteFrameKeyframe", "resourceVersion": "1.0", "Id": { "name": "5f5ca13e-a0d0-4bc9-843e-53775dc27efc", "path": "sprites/spr_temp/spr_temp.yy", }, }, }, "Disabled": false, "id": "3db601aa-9658-4c19-9528-8a5f31a4b61f", "IsCreationKey": false, "Key": 0.0, "Length": 1.0, "Stretch": false, },
+              ],
+            }, "modifiers": [], "spriteId": null, "trackColour": 0, "tracks": [], "traits": 0,
+          },
+        ],
+        "visibleRange": null,
+        "volume": 1.0,
+        "xorigin": 0,
+        "yorigin": 0,
+      },
+      "swatchColours": null,
+      "swfPrecision": 2.525,
+      "textureGroupId": {
+        "name": "Default",
+        "path": "texturegroups/Default",
+      },
+      "type": 0,
+      "VTile": false,
+      "width": 64,
+    };
+    let shd_temp_yy = {
+      "resourceType": "GMShader",
+      "resourceVersion": "1.0",
+      "name": "shd_temp",
+      "parent": {
+        "name": "Shaders",
+        "path": "folders/Shaders.yy",
+      },
+      "type": 1,
+    };
+    let obj_temp_yy = {
+      "resourceType": "GMObject",
+      "resourceVersion": "1.0",
+      "name": "obj_temp",
+      "eventList": [
+        { "resourceType": "GMEvent", "resourceVersion": "1.0", "name": "", "collisionObjectId": null, "eventNum": 0, "eventType": 0, "isDnD": false, },
+        { "resourceType": "GMEvent", "resourceVersion": "1.0", "name": "", "collisionObjectId": null, "eventNum": 0, "eventType": 8, "isDnD": false, },
+        { "resourceType": "GMEvent", "resourceVersion": "1.0", "name": "", "collisionObjectId": null, "eventNum": 0, "eventType": 12, "isDnD": false, },
+      ],
+      "managed": true,
+      "overriddenProperties": [],
+      "parent": {
+        "name": "Objects",
+        "path": "folders/Objects.yy",
+      },
+      "parentObjectId": null,
+      "persistent": false,
+      "physicsAngularDamping": 0.1,
+      "physicsDensity": 0.5,
+      "physicsFriction": 0.2,
+      "physicsGroup": 1,
+      "physicsKinematic": false,
+      "physicsLinearDamping": 0.1,
+      "physicsObject": false,
+      "physicsRestitution": 0.1,
+      "physicsSensor": false,
+      "physicsShape": 1,
+      "physicsShapePoints": [],
+      "physicsStartAwake": true,
+      "properties": [],
+      "solid": false,
+      "spriteId": null,
+      "spriteMaskId": null,
+      "visible": true,
+    };
+    let temp_resource_order = {
+      "FolderOrderSettings": [
+        { "name": "Objects", "order": 9, "path": "folders/Objects.yy", },
+        { "name": "Shaders", "order": 6, "path": "folders/Shaders.yy", },
+        { "name": "Sprites", "order": 1, "path": "folders/Sprites.yy", },
+      ],
+      "ResourceOrderSettings": [],
+    };
+    let metadata_json = {
+      "package_id": "temp",
+      "display_name": "temp",
+      "version": "1.0.0",
+      "package_type": "asset",
+      "ide_version": "2023.4.0.84"
+    };
+    let temp_yyp = {
+      "resourceType": "GMProject",
+      "resourceVersion": "1.7",
+      "name": "temp",
+      "AudioGroups": [
+        { "resourceType": "GMAudioGroup", "resourceVersion": "1.3", "name": "audiogroup_default", "targets": -1, },
+      ],
+      "configs": {
+        "children": [],
+        "name": "Default",
+      },
+      "defaultScriptType": 1,
+      "Folders": [
+        { "resourceType": "GMFolder", "resourceVersion": "1.0", "name": "Objects", "folderPath": "folders/Objects.yy", },
+        { "resourceType": "GMFolder", "resourceVersion": "1.0", "name": "Shaders", "folderPath": "folders/Shaders.yy", },
+        { "resourceType": "GMFolder", "resourceVersion": "1.0", "name": "Sprites", "folderPath": "folders/Sprites.yy", },
+      ],
+      "IncludedFiles": [],
+      "isEcma": false,
+      "LibraryEmitters": [],
+      "MetaData": {
+        "IDEVersion": "2023.4.0.84",
+        "PackageType": "Asset",
+        "PackageName": "temp",
+        "PackageID": "temp",
+        "PackagePublisher": "znm",
+        "PackageVersion": "1.0.0",
+      },
+      "resources": [
+        { "id": { "name": "obj_temp", "path": "objects/obj_temp/obj_temp.yy", }, },
+      ],
+      "RoomOrderNodes": [],
+      "TextureGroups": [
+        { "resourceType": "GMTextureGroup", "resourceVersion": "1.3", "name": "Default", "autocrop": true, "border": 2, "compressFormat": "bz2", "directory": "", "groupParent": null, "isScaled": true, "loadType": "default", "mipsToGenerate": 0, "targets": -1, },
+      ],
+    };
+    const vsh = `//
+// Simple passthrough vertex shader
+//
+attribute vec3 in_Position;                  // (x,y,z)
+//attribute vec3 in_Normal;                  // (x,y,z)     unused in this shader.
+attribute vec4 in_Colour;                    // (r,g,b,a)
+attribute vec2 in_TextureCoord;              // (u,v)
+
+varying vec2 v_vTexcoord;
+varying vec4 v_vColour;
+
+void main()
+{
+    vec4 object_space_pos = vec4( in_Position.x, in_Position.y, in_Position.z, 1.0);
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * object_space_pos;
+    
+    v_vColour = in_Colour;
+    v_vTexcoord = in_TextureCoord;
+}
+`;
+    // 添加拖放功能
+    function setupDragAndDrop() {
+      // 防止默认拖放行为
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        xamlImage.addEventListener(eventName, preventDefaults, false);
+      });
+
+      // 高亮拖放区域
+      ['dragenter', 'dragover'].forEach(eventName => {
+        xamlImage.addEventListener(eventName, highlight, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        xamlImage.addEventListener(eventName, unhighlight, false);
+      });
+
+      // 处理拖放文件
+      xamlImage.addEventListener('drop', handleDrop, false);
+
+      // 点击打开文件选择
+      xamlImage.addEventListener('click', function () {
+        if (xamlCombo.value == "2") {
+          textureFileInput.click();
+        }
+      });
+    }
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    function highlight() {
+      xamlImage.classList.add('drag-over');
+    }
+
+    function unhighlight() {
+      xamlImage.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+
+      if (files.length > 0) {
+        handleTextureFile(files[0]);
+      }
+    }
+
+    function handleTextureFile(file) {
+      if (file && file.type.match('image.*')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          // 将图片数据保存到dic中
+          dic[code_name][2] = e.target.result;
+          // 显示图片预览
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+          imagePlaceholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        showModal(translations[currentLanguage]['error'], translations[currentLanguage]['invalidImageFile']);
+      }
+    }
+
+    for (let i = 0; i < items_code.length; i++) {
+      dic[items_code[i].getAttribute("name")] = ["0", "", ""];
+      items_code[i].addEventListener("click", function () {
+        ct_xaml.style.display = "";
+        ct_convert.style.display = "none";
+        ct_pre.style.display = "none";
+        code_name = items_code[i].getAttribute("name");
+        xamlCombo.value = dic[code_name][0];
+        xamlCombo.dispatchEvent(new Event('change'));
+        xamlTextbox.value = dic[code_name][1];
+
+        // 恢复图片预览
+        if (dic[code_name] && dic[code_name][2]) {
+          previewImage.src = dic[code_name][2];
+          previewImage.style.display = 'block';
+          imagePlaceholder.style.display = 'none';
+        } else {
+          previewImage.style.display = 'none';
+          imagePlaceholder.style.display = 'block';
+        }
+      });
+    }
+    for (let i = 0; i < items_choose.length; i++) {
+      dic[items_choose[i].getAttribute("name")] = ["", "", "", "", "", ""];
+      items_choose[i].addEventListener("click", function () {
+        ct_convert.style.display = "";
+        ct_xaml.style.display = "none";
+        ct_pre.style.display = "none";
+        choose_name = items_choose[i].getAttribute("name");
+        inputCode.value = dic[choose_name][0];
+        outputCode.value = dic[choose_name][1];
+      });
+    }
+    // 添加弹窗控制函数
+    function showModal(title, message) {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalHeader = modalOverlay.querySelector('.modal-header h3');
+      const modalMessage = modalOverlay.querySelector('#modalMessage');
+
+      modalHeader.textContent = title;
+      modalMessage.textContent = message;
+      modalOverlay.style.display = 'flex';
+
+      // 添加ESC键关闭功能
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    function hideModal() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      modalOverlay.style.display = 'none';
+
+      // 移除ESC键监听
+      document.removeEventListener('keydown', handleEscapeKey);
+    }
+
+    function handleEscapeKey(event) {
+      if (event.key === 'Escape') {
+        hideModal();
+      }
+    }
+
+    // 点击蒙层关闭弹窗
+    document.getElementById('modalOverlay').addEventListener('click', function (event) {
+      if (event.target === this) {
+        hideModal();
+      }
+    });
+    function showStep(stepNumber) {
+
+      if (stepNumber === currentStep) return;
+      if (stepNumber === 3) {
+        if (dic["Image"][1] == "") {
+          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['imageNotConfigured']);
+          return;
+        }
+        let create = '', clean = '', draw = '', dp = '', yyp = JSON.parse(JSON.stringify(temp_yyp));
+        yyp.name = _shadername;
+        yyp.resources[0].id.name = `obj_${_shadername}`;
+        yyp.resources[0].id.path = `objects/obj_${_shadername}/obj_${_shadername}.yy`;
+        create += dic["BufferA"][2];
+        create += dic["BufferB"][2];
+        create += dic["BufferC"][2];
+        create += dic["BufferD"][2];
+        create += dic["Image"][2];
+        draw += dic["BufferA"][3];
+        draw += dic["BufferB"][3];
+        draw += dic["BufferC"][3];
+        draw += dic["BufferD"][3];
+        draw += dic["Image"][3];
+        clean += dic["BufferA"][4];
+        clean += dic["BufferB"][4];
+        clean += dic["BufferC"][4];
+        clean += dic["BufferD"][4];
+        clean += dic["Image"][4];
+        dp += dic["BufferA"][5];
+        dp += dic["BufferB"][5];
+        dp += dic["BufferC"][5];
+        dp += dic["BufferD"][5];
+        dp += dic["Image"][5];
+        dp += draw;
+        let zip = new JSZip();
+
+        let _st;
+        zip.file("metadata.json", JSON.stringify(metadata_json, null, 2));
+        if (dic["Image"][1].includes("main()")) {
+          zip.file(`shaders/shd_${_shadername}/shd_${_shadername}.vsh`, vsh);
+          zip.file(`shaders/shd_${_shadername}/shd_${_shadername}.fsh`, dic["Common"][1] + dic["Image"][1]);
+          _st = JSON.parse(JSON.stringify(shd_temp_yy));
+          _st.name = `shd_${_shadername}`;
+          zip.file(`shaders/shd_${_shadername}/shd_${_shadername}.yy`, JSON.stringify(_st, null, 2));
+          yyp.resources.push({ "id": { "name": `shd_${_shadername}`, "path": `shaders/shd_${_shadername}/shd_${_shadername}.yy`, }, });
+        }
+        if (dic["BufferA"][1].includes("main()")) {
+          zip.file(`shaders/shd_${_shadername}_bfA/shd_${_shadername}_bfA.vsh`, vsh);
+          zip.file(`shaders/shd_${_shadername}_bfA/shd_${_shadername}_bfA.fsh`, dic["Common"][1] + dic["BufferA"][1]);
+          _st = JSON.parse(JSON.stringify(shd_temp_yy));
+          _st.name = `shd_${_shadername}_bfA`;
+          zip.file(`shaders/shd_${_shadername}_bfA/shd_${_shadername}_bfA.yy`, JSON.stringify(_st, null, 2));
+          yyp.resources.push({ "id": { "name": `shd_${_shadername}_bfA`, "path": `shaders/shd_${_shadername}_bfA/shd_${_shadername}_bfA.yy`, }, });
+        }
+        if (dic["BufferB"][1].includes("main()")) {
+          zip.file(`shaders/shd_${_shadername}_bfB/shd_${_shadername}_bfB.vsh`, vsh);
+          zip.file(`shaders/shd_${_shadername}_bfB/shd_${_shadername}_bfB.fsh`, dic["Common"][1] + dic["BufferB"][1]);
+          _st = JSON.parse(JSON.stringify(shd_temp_yy));
+          _st.name = `shd_${_shadername}_bfB`;
+          zip.file(`shaders/shd_${_shadername}_bfB/shd_${_shadername}_bfB.yy`, JSON.stringify(_st, null, 2));
+          yyp.resources.push({ "id": { "name": `shd_${_shadername}_bfB`, "path": `shaders/shd_${_shadername}_bfB/shd_${_shadername}_bfB.yy`, }, });
+        }
+        if (dic["BufferC"][1].includes("main()")) {
+          zip.file(`shaders/shd_${_shadername}_bfC/shd_${_shadername}_bfC.vsh`, vsh);
+          zip.file(`shaders/shd_${_shadername}_bfC/shd_${_shadername}_bfC.fsh`, dic["Common"][1] + dic["BufferC"][1]);
+          _st = JSON.parse(JSON.stringify(shd_temp_yy));
+          _st.name = `shd_${_shadername}_bfC`;
+          zip.file(`shaders/shd_${_shadername}_bfC/shd_${_shadername}_bfC.yy`, JSON.stringify(_st, null, 2));
+          yyp.resources.push({ "id": { "name": `shd_${_shadername}_bfC`, "path": `shaders/shd_${_shadername}_bfC/shd_${_shadername}_bfC.yy`, }, });
+        }
+        if (dic["BufferD"][1].includes("main()")) {
+          zip.file(`shaders/shd_${_shadername}_bfD/shd_${_shadername}_bfD.vsh`, vsh);
+          zip.file(`shaders/shd_${_shadername}_bfD/shd_${_shadername}_bfD.fsh`, dic["Common"][1] + dic["BufferD"][1]);
+          _st = JSON.parse(JSON.stringify(shd_temp_yy));
+          _st.name = `shd_${_shadername}_bfD`;
+          zip.file(`shaders/shd_${_shadername}_bfD/shd_${_shadername}_bfD.yy`, JSON.stringify(_st, null, 2));
+          yyp.resources.push({ "id": { "name": `shd_${_shadername}_bfD`, "path": `shaders/shd_${_shadername}_bfD/shd_${_shadername}_bfD.yy`, }, });
+        }
+        zip.file(`objects/obj_${_shadername}/CleanUp_0.gml`, clean);
+        zip.file(`objects/obj_${_shadername}/Draw_0.gml`, dp);
+        zip.file(`objects/obj_${_shadername}/Create_0.gml`, create);
+        _st = JSON.parse(JSON.stringify(obj_temp_yy));
+        _st.name = `obj_${_shadername}`;
+        zip.file(`objects/obj_${_shadername}/obj_${_shadername}.yy`, JSON.stringify(_st, null, 2));
+        for (let key in dic) {
+          if (dic[key].length == 3 && dic[key][2] != "") {
+            let img = new Image();
+            img.src = dic[key][2];
+            let spr = generateUUID();
+            let layer = generateUUID();
+            let fid = generateUUID();
+            const matches = dic[key][2].match(/^data:(image\/[a-zA-Z+]+);base64,(.+)$/);
+            let ext = matches[1].split('/')[1];
+            const binaryData = atob(matches[2]);
+            const uint8Array = new Uint8Array(binaryData.length);
+            for (let i = 0; i < binaryData.length; i++) {
+              uint8Array[i] = binaryData.charCodeAt(i);
+            }
+            zip.file(`sprites/${dic[key][1]}/${spr}.${ext}`, uint8Array);
+            zip.file(`sprites/${dic[key][1]}/layers/${spr}/${layer}.${ext}`, uint8Array);
+            _st = JSON.parse(JSON.stringify(spr_temp_yy));
+            _st.name = dic[key][1];
+            _st.width = img.naturalWidth;
+            _st.height = img.naturalHeight;
+            _st.bbox_bottom = img.naturalHeight - 1;
+            _st.bbox_right = img.naturalWidth - 1;
+            _st.frames[0].name = spr;
+            _st.layers[0].name = layer;
+            _st.sequence.name = dic[key][1];
+            _st.sequence.tracks[0].keyframes.Keyframes[0].id = fid;
+            _st.sequence.tracks[0].keyframes.Keyframes[0].Channels["0"].Id.name = spr;
+            _st.sequence.tracks[0].keyframes.Keyframes[0].Channels["0"].Id.path = `sprites/${dic[key][1]}/${dic[key][1]}.yy`
+            zip.file(`sprites/${dic[key][1]}/${dic[key][1]}.yy`, JSON.stringify(_st, null, 2));
+            yyp.resources.push({ "id": { "name": dic[key][1], "path": `sprites/${dic[key][1]}/${dic[key][1]}.yy`, }, });
+          }
+        }
+        zip.file(`${_shadername}.yyp`, JSON.stringify(yyp, null, 2));
+        zip.generateAsync({ type: "blob" })
+          .then(function (content) {
+            saveAs(content, `${_shadername}.yymps`);
+          });
+        showModal(translations[currentLanguage]['success'], translations[currentLanguage]['codeGenerated']);
+        return;
+      }
+      else if (stepNumber === 2) {
+        _shadername = shaderNameInput.value;
+        if (_shadername === undefined || _shadername.trim() === "") {
+          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameRequired']);
+          return;
+        } else if (_shadername.length > 20) {
+          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameToolong']);
+          return;
+        } else if (_shadername.match(/[^a-zA-Z0-9_]/)) {
+          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameInvalid']);
+          return;
+        }
+      }
+      const currentStepElem = document.getElementById(`step${currentStep}`);
+      const targetStepElem = document.getElementById(`step${stepNumber}`);
+      const currentProgress = document.getElementById(
+        `step${currentStep}-progress`
+      );
+      const targetProgress = document.getElementById(
+        `step${stepNumber}-progress`
+      );
+
+      currentStepElem.classList.remove("active");
+
+      if (stepNumber > currentStep) {
+        currentProgress.classList.remove("active");
+        currentProgress.classList.add("completed");
+        targetProgress.classList.add("active");
+      } else {
+        currentProgress.classList.remove("active");
+        targetProgress.classList.remove("completed");
+        targetProgress.classList.add("active");
+      }
+
+      // 切换按钮显示
+      if (stepNumber === 1) {
+        step1Buttons.style.display = "flex";
+        step2Buttons.style.display = "none";
+      } else {
+        step1Buttons.style.display = "none";
+        step2Buttons.style.display = "flex";
+      }
+
+      setTimeout(() => {
+        targetStepElem.classList.add("active");
+        currentStep = stepNumber;
+      }, 300);
+    }
+    function getImageExtensionFromBase64(base64String) {
+      // 图像MIME类型到后缀的映射
+      const imageMimeMap = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/bmp': 'bmp',
+        'image/webp': 'webp',
+        'image/svg+xml': 'svg',
+        'image/tiff': 'tiff',
+        'image/x-icon': 'ico'
+      };
+
+      // 提取MIME类型（处理可能缺少data前缀的情况）
+      let mimeType;
+      const mimeTypeMatch = base64String.match(/data:([^;]+);base64/);
+
+      if (mimeTypeMatch && mimeTypeMatch[1]) {
+        mimeType = mimeTypeMatch[1];
+      } else {
+        // 如果没有明确MIME类型，默认按图像处理
+        // 这里可以根据实际需求设置默认类型，如jpeg
+        return 'jpg';
+      }
+
+      // 检查是否为已知图像类型
+      if (imageMimeMap.hasOwnProperty(mimeType)) {
+        return imageMimeMap[mimeType];
+      }
+
+      // 未知图像类型时返回默认值
+      return 'jpg';
+    }
+    function generateUUID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+    function toggleTreeItem(element) {
+      const content = element.nextElementSibling;
+      element.classList.toggle("expanded");
+
+      const icon = element.querySelector("i");
+      if (icon) {
+        if (element.classList.contains("expanded")) {
+          icon.className = "fas fa-folder-open";
+        } else {
+          icon.className = "fas fa-folder";
+        }
+      }
+
+      if (content.classList.contains("expanded")) {
+        content.classList.remove("expanded");
+        content.style.maxHeight = "0";
+      } else {
+        content.classList.add("expanded");
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    }
+    // 初始化XAML转换后的界面交互
+
+    // 文件选择处理
+    xamlImport.addEventListener("click", function () {
+      textureFileInput.click();
+    });
+
+    textureFileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      handleTextureFile(file);
+    });
+
+    xamlTextbox.addEventListener("input", function () {
+      if (code_name != undefined) {
+        dic[code_name][1] = this.value;
+      }
+
+      if (this.value.match(/[^a-zA-Z0-9_]/)) {
+        showModal(translations[currentLanguage]['notification'], translations[currentLanguage]['NameInvalid']);
+        this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+      }
+      if (this.value.length > 20) {
+        showModal(translations[currentLanguage]['notification'], translations[currentLanguage]['NameToolong']);
+        this.value = this.value.substring(0, 20);
+      }
+    });
+    xamlCombo.addEventListener("change", function () {
+      // 根据选择显示/隐藏相关元素
+      if (this.value == "2") {
+        xamlImport.style.display = "flex";
+        xamlTextbox.style.display = "block";
+        xamlImage.style.display = "";
+        // 如果已经有图片数据，则显示图片
+        if (dic[code_name] && dic[code_name][2]) {
+          previewImage.src = dic[code_name][2];
+          previewImage.style.display = 'block';
+          imagePlaceholder.style.display = 'none';
+        } else {
+          previewImage.style.display = 'none';
+          imagePlaceholder.style.display = 'block';
+        }
+      } else if (this.value == '3') {
+        xamlImport.style.display = "none";
+        xamlTextbox.style.display = "block";
+        xamlImage.style.display = "none";
+      }
+      else {
+        xamlImport.style.display = "none";
+        xamlTextbox.style.display = "none";
+        xamlImage.style.display = "none";
+
+
+      }
+      dic[code_name][0] = this.value;
+    });
+
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach((input) => {
+      input.addEventListener("focus", () => {
+        input.parentElement.classList.add("focused");
+      });
+
+      input.addEventListener("blur", () => {
+        input.parentElement.classList.remove("focused");
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const treeContents = document.querySelectorAll(
+        ".tree-content.expanded"
+      );
+      treeContents.forEach((content) => {
+        content.style.maxHeight = content.scrollHeight + "px";
+      });
+
+      // 初始化转换按钮事件
+      const convertBtn = document.getElementById("convertBtn");
+      const inputCode = document.getElementById("inputCode");
+      const outputCode = document.getElementById("outputCode");
+      const finalOutput = document.getElementById("finalOutput");
+
+      convertBtn.addEventListener("click", function () {
+        // 模拟转换过程
+        if (inputCode.value.trim() === "") {
+          outputCode.value = translations[currentLanguage]['inputCodeRequired'];
+          return;
+        }
+        let pre_key;
+        switch (choose_name) {
+          case "Image":
+            pre_key = "i"
+            break;
+          case "BufferA":
+            pre_key = "ba"
+            break;
+          case "BufferB":
+            pre_key = "bb";
+          case "BufferC":
+            pre_key = "bc";
+            break;
+          case "BufferD":
+            pre_key = "bd";
+            break;
+        }
+        let cns = [];
+        for (let i = 0; i < 4; i++) {
+          switch (dic[pre_key + i][0]) {
+            case "0":
+              cns.push("无");
+              break;
+            case "1":
+              cns.push("基本纹理");
+              break;
+            case "2":
+              cns.push("贴图");
+              break;
+            case "3":
+              cns.push("表面");
+              break;
+            case "4":
+              cns.push("游戏画面");
+              break;
+            case "5":
+              cns.push("BufferA");
+              break;
+            case "6":
+              cns.push("BufferB");
+              break;
+            case "7":
+              cns.push("BufferC");
+              break;
+            case "8":
+              cns.push("BufferD");
+              break;
+          }
+        }
+
+        const codes = convert(inputCode.value, cns, choose_name, [
+          dic[pre_key + "0"][1],
+          dic[pre_key + "1"][1],
+          dic[pre_key + "2"][1],
+          dic[pre_key + "3"][1]
+        ]);
+        outputCode.value = codes[0];
+        dic[choose_name][0] = inputCode.value;
+        dic[choose_name][1] = outputCode.value;
+        dic[choose_name][2] = codes[1];
+        dic[choose_name][3] = codes[2];
+        dic[choose_name][4] = codes[3];
+        dic[choose_name][5] = codes[4];
+      });
+
+      shaderIframe.addEventListener("load", () => {
+        if (shaderIframe.src) {
+          previewPlaceholder.style.display = "none";
+        } else {
+          previewPlaceholder.style.display = "flex";
+        }
+      });
+
+      // 设置拖放功能
+      setupDragAndDrop();
+    });
+
+    function loadShaderPreview(url) {
+      shaderIframe.src = url;
+      previewPlaceholder.style.display = "none";
+    }
+
+    function clearShaderPreview() {
+      shaderIframe.src = "";
+      previewPlaceholder.style.display = "flex";
+    }
+
+    function downloadDesktopApp() {
+      // 这里可以添加实际的下载逻辑
+      window.open(
+        "https://github.com/znm2500/Shadertoy-To-GameMaker/releases"
+      );
+      // 实际项目中可以替换为：window.location.href = '下载文件的URL';
+    }
+    function convert(code, channels, scr, names) {
+      let houz = "";
+      const finished = [false, false, false, false, false];
+      let ev_f = "", ev_c = "", ev_d = "", dp = "";
+      let pre = `varying vec4 v_vColour;\r\nvarying vec2 v_vTexcoord;\r\nvec2 iMouse=vec2(0.,0.);\r\nuniform float iTime;\r\nuniform vec2 iResolution;\r\nuniform float iFrame;\r\n`;
+
+      // 处理不同的scr情况
+      switch (scr) {
+        case "BufferA":
+          houz = "_bfA";
+          ev_c += "surface_bfA = surface_create(room_width, room_height);\r\n";
+          ev_f += "surface_free(surface_bfA);\r\n";
+          dp += "if (!surface_exists(surface_bfA)) surface_bfA = surface_create(room_width, room_height);\r\n";
+          ev_d += "surface_set_target(surface_bfA);\r\ndraw_clear_alpha(c_black, 0);\r\n";
+          break;
+        case "BufferB":
+          houz = "_bfB";
+          ev_c += "surface_bfB = surface_create(room_width, room_height);\r\n";
+          ev_f += "surface_free(surface_bfB);\r\n";
+          ev_d += "surface_set_target(surface_bfB);\r\ndraw_clear_alpha(c_black, 0);\r\n";
+          dp += "if (!surface_exists(surface_bfB)) surface_bfB = surface_create(room_width, room_height);\r\n";
+          break;
+        case "BufferC":
+          houz = "_bfC";
+          ev_c += "surface_bfC = surface_create(room_width, room_height);\r\n";
+          ev_f += "surface_free(surface_bfC);\r\n";
+          ev_d += "surface_set_target(surface_bfC);\r\ndraw_clear_alpha(c_black, 0);\r\n";
+          dp += "if (!surface_exists(surface_bfC)) surface_bfC = surface_create(room_width, room_height);\r\n";
+          break;
+        case "BufferD":
+          houz = "_bfD";
+          ev_c += "surface_bfD = surface_create(room_width, room_height);\r\n";
+          ev_f += "surface_free(surface_bfD);\r\n";
+          ev_d += "surface_set_target(surface_bfD);\r\ndraw_clear_alpha(c_black, 0);\r\n";
+          dp += "if (!surface_exists(surface_bfD)) surface_bfD = surface_create(room_width, room_height);\r\n";
+          break;
+        case "Image":
+          ev_c += "surface = surface_create(room_width, room_height);\r\n";
+          ev_f += "surface_free(surface);\r\n";
+          ev_d += "surface_set_target(surface);\r\ndraw_clear_alpha(c_black, 0);\r\n";
+          dp += "if (!surface_exists(surface)) surface = surface_create(room_width, room_height);\r\n";
+          break;
+      }
+
+      // 处理ef条件下的代码替换
+
+
+      // 提取mainImage的参数名并替换
+      const paramMatch = code.match(/mainImage\s*\(\s*out\s+\w+\s+(\w+)\s*,\s*in\s+vec2\s+(\w+)\s*\)/);
+      if (paramMatch) {
+        const outVar = paramMatch[1];
+        const inVar = paramMatch[2];
+
+        const bodyMatch = code.match(/void\s+mainImage\s*\([^\)]*\)\s*\{(?<body>.*?)\}/s);
+        if (bodyMatch && bodyMatch.groups) {
+
+          let body = bodyMatch.groups.body;
+          let newbody = body.replace(new RegExp(`\\b${escapeRegExp(outVar)}\\b`, 'g'), "fragColor");
+          newbody = newbody.replace(new RegExp(`\\b${escapeRegExp(inVar)}\\b`, 'g'), "fragCoord");;
+          code = code.replace(body, "\r\n\tfragColor.a = 1.;" + newbody + "\tfragColor *= v_vColour;\r\n");
+        }
+
+      }
+      if (_shadertype) {
+        code = code.replace(/fragCoord\.xy\s*\/\s*iResolution.xy/g, "v_vTexcoord");
+        code = code.replace(/fragCoord\s*\/\s*iResolution.xy/g, "v_vTexcoord");
+      }
+      // 进一步的代码替换
+      code = code.replace(/mainImage\(.*?\)/g, "main()");
+      code = code.replace(/fragColor/g, "gl_FragColor");
+      code = code.replace(/fragCoord.xy/g, "vec2(gl_FragCoord.x, iResolution.y - gl_FragCoord.y)");
+      code = code.replace(/fragCoord/g, "vec2(gl_FragCoord.x, iResolution.y - gl_FragCoord.y)");
+      code = code.replace(/fragCoord.y/g, "(iResolution.y - gl_FragCoord.y)");
+      code = code.replace(/texture/g, "texture2D");
+      code = code.replace(/texture2DLod/g, "texture2D");
+
+
+      // 处理uniform变量
+      const matches = code.match(/uniform.+;/g) || [];
+      ev_d += `shader_set(shd_${_shadername}${houz});\r\n`;
+
+      for (const match of matches) {
+        const key = match;
+        let create, s;
+
+        if (key.includes("float")) {
+          create = key.match(/float\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_f(${create}_uniform,${create});`;
+          ev_c += " = 0;\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("int")) {
+          create = key.match(/int\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_i(${create}_uniform,${create});`;
+          ev_c += " = 0;\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("vec2")) {
+          create = key.match(/vec2\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_f_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("vec3")) {
+          create = key.match(/vec3\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_f_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("vec4")) {
+          create = key.match(/vec4\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_f_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0,0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("ivec2")) {
+          create = key.match(/ivec2\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_i_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("ivec3")) {
+          create = key.match(/ivec3\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_i_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("ivec4")) {
+          create = key.match(/ivec4\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_i_array(${create}_uniform,${create});`;
+          ev_c += " = [0,0,0,0];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("mat2")) {
+          create = key.match(/mat2\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_matrix_array(${create}_uniform,${create});`;
+          ev_c += " = [[0,0],[0,0]];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("mat3")) {
+          create = key.match(/mat3\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_matrix_array(${create}_uniform,${create});`;
+          ev_c += " = [[0,0,0],[0,0,0],[0,0,0]];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+        else if (key.includes("mat4")) {
+          create = key.match(/mat4\s+([\w_]+)\s*;/)[1];
+          create += houz;
+          ev_c += create;
+          s = `shader_set_uniform_matrix_array(${create}_uniform,${create});`;
+          ev_c += " = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];\r\n";
+          ev_c += `${create}_uniform = shader_get_uniform(shd_${_shadername}${houz},"${create}");\r\n`;
+          ev_d += s + "\r\n";
+        }
+      }
+
+      // 添加时间、分辨率和帧相关的uniform
+      ev_c += `time${houz}_uniform = shader_get_uniform(shd_${_shadername}${houz},"iTime");\r\n`;
+      ev_c += `resolution${houz}_uniform = shader_get_uniform(shd_${_shadername}${houz},"iResolution");\r\n`;
+      ev_c += `frame${houz}_uniform = shader_get_uniform(shd_${_shadername}${houz},"iFrame");\r\n`;
+
+      ev_d += `shader_set_uniform_f(time${houz}_uniform,current_time/1000);\r\n`;
+      ev_d += `shader_set_uniform_f_array(resolution${houz}_uniform,[room_width,room_height]);\r\n`;
+      ev_d += `shader_set_uniform_f(frame${houz}_uniform,current_time);\r\n`;
+
+      // 处理通道
+      for (let i = 0; i < 4; i++) {
+        if (!code.includes(`iChannel${i}`)) continue;
+
+        switch (channels[i]) {
+          case "无":
+            showModal(translations[currentLanguage]['error'], `iChannel${i}${translations[currentLanguage]['channelNotSelected']}`);
+            return ["", "", "", "", ""];
+            break;
+          case "基本纹理":
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "gm_BaseTexture");
+            break;
+          case "贴图":
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), `spr_texture${i}`);
+            pre += `uniform sampler2D spr_texture${i};\r\n`;
+
+            if (!/^[\w_]+$/.test(names[i])) {
+              showModal(translations[currentLanguage]['error'], `iChannel${i}${translations[currentLanguage]['textureNameInvalid']}`);
+              return ["", "", "", "", ""];
+            }
+            if (names[i] == "") {
+              showModal(translations[currentLanguage]['error'], `iChannel${i}${translations[currentLanguage]['textureNameRequired']}`);
+              return ["", "", "", "", ""];
+            }
+            ev_c += `tex_${names[i]} = sprite_get_texture(${names[i]}, 0);\r\n`;
+            ev_c += `spr_texture${i}${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "spr_texture${i}");\r\n`;
+            ev_d += `texture_set_stage(spr_texture${i}${houz}_uniform, tex_${names[i]});\r\n`;
+            break;
+          case "表面":
+            if (names[i] == "") {
+              showModal(translations[currentLanguage]['error'], `iChannel${i}${translations[currentLanguage]['surfaceNameRequired']}`);
+              return ["", "", "", "", ""];
+            }
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), `sur_texture${i}`);
+            pre += `uniform sampler2D sur_texture${i};\r\n`;
+
+            if (!/^[\w_]+$/.test(names[i])) {
+              showModal(translations[currentLanguage]['error'], `iChannel${i}${translations[currentLanguage]['surfaceNameInvalid']}`);
+              return ["", "", "", "", ""];
+            }
+            ev_c += `sur_texture${i}${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "sur_texture${i}");\r\n`;
+            dp += `tex_${names[i]} = surface_get_texture(${names[i]});\r\n`;
+            ev_d += `texture_set_stage(sur_texture${i}_uniform, tex_${names[i]});\r\n`;
+            break;
+          case "游戏画面":
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "aplsur_texture");
+            if (finished[0]) break;
+
+            pre += `uniform sampler2D aplsur_texture;\r\n`;
+            ev_c += `aplsur${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "alpsur_texture");\r\n`;
+            ev_d += `texture_set_stage(aplsur${houz}_uniform, tex_aplsur);\r\n`;
+            dp += "tex_aplsur = surface_get_texture(application_surface);\r\n";
+            finished[0] = true;
+            break;
+          case "BufferA":
+            if (!bf[0]) {
+              showModal(translations[currentLanguage]['error'], translations[currentLanguage]['bufferANotConfigured']);
+              return ["", "", "", "", ""];
+            }
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferA");
+            if (finished[1]) break;
+
+            pre += "uniform sampler2D bufferA;\r\n";
+            ev_c += `bufferA${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferA");\r\n`;
+            ev_d += `texture_set_stage(bufferA${houz}_uniform, tex_bufferA);\r\n`;
+            dp += "tex_bufferA = surface_get_texture(surface_bfA);\r\n";
+            break;
+          case "BufferB":
+            if (!bf[1]) {
+              showModal(translations[currentLanguage]['error'], translations[currentLanguage]['bufferBNotConfigured']);
+              return ["", "", "", "", ""];
+            }
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferB");
+            pre += "uniform sampler2D bufferB;\r\n";
+            ev_c += `bufferB${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferB");\r\n`;
+            ev_d += `texture_set_stage(bufferB${houz}_uniform, tex_bufferB);\r\n`;
+            dp += "tex_bufferB = surface_get_texture(surface_bfB);\r\n";
+            break;
+          case "BufferC":
+            if (!bf[2]) {
+              showModal("错误", "BufferC未编辑！");
+              return ["", "", "", "", ""];
+            }
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferC");
+            pre += "uniform sampler2D bufferC;\r\n";
+            ev_c += `bufferC${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferC");\r\n`;
+            ev_d += `texture_set_stage(bufferC${houz}_uniform, tex_bufferC);\r\n`;
+            dp += "tex_bufferC = surface_get_texture(surface_bfC);\r\n";
+            break;
+          case "BufferD":
+            if (!bf[3]) {
+              showModal("错误", "BufferD未编辑！");
+              return ["", "", "", "", ""];
+            }
+            code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferD");
+            pre += "uniform sampler2D bufferD;\r\n";
+            ev_c += `bufferD${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferD");\r\n`;
+            ev_d += `texture_set_stage(bufferD${houz}_uniform, tex_bufferD);\r\n`;
+            dp += "tex_bufferD = surface_get_texture(surface_bfD);\r\n";
+            break;
+        }
+      }
+
+      // 处理绘制逻辑
+      if (_shadertype) {
+        ev_d += "draw_surface(application_surface, 0, 0);\r\n";
+      } else {
+        ev_d += "draw_rectangle(0, 0, room_width, room_height, false);\r\n";
+      }
+      ev_d += "shader_reset();\r\nsurface_reset_target();\r\n";
+
+      if (scr === "Image") {
+        ev_d += "draw_surface(surface, 0, 0);\r\n";
+      }
+
+      if (scr === "Common") {
+        return [code, "", "", "", ""];
+      }
+
+      code = pre + code;
+      showModal("成功", "代码转换成功！请查看输出结果");
+      return [code, ev_c, ev_d, ev_f, dp];
+    }
+
+    // 辅助函数：正则转义
+    function escapeRegExp(str) {
+      return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+
+  </script>
+
+</body>
+
+</html>

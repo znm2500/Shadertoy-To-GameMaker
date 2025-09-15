@@ -1928,7 +1928,7 @@ void main()
       else if (stepNumber === 2) {
         _shadername = shaderNameInput.value;
         if (_shadername === undefined || _shadername.trim() === "") {
-          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameRequired']);
+          showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameEmpty']);
           return;
         } else if (_shadername.length > 20) {
           showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameToolong']);

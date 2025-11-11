@@ -2131,6 +2131,7 @@ void main()
             break;
           case "BufferB":
             pre_key = "bb";
+            break;
           case "BufferC":
             pre_key = "bc";
             break;
@@ -2217,7 +2218,6 @@ void main()
     }
     function convert(code, channels, scr, names) {
       let houz = "";
-      const finished = [false, false, false, false, false];
       let ev_f = "", ev_c = "", ev_d = "", dp = "";
       let pre = `varying vec4 v_vColour;\r\nvarying vec2 v_vTexcoord;\r\nvec2 iMouse=vec2(0.,0.);\r\nuniform float iTime;\r\nuniform vec2 iResolution;\r\nuniform float iFrame;\r\n`;
 
@@ -2455,32 +2455,19 @@ void main()
             break;
           case "游戏画面":
             code = code.replace(new RegExp(`iChannel${i}`, 'g'), "aplsur_texture");
-            if (finished[0]) break;
-
             pre += `uniform sampler2D aplsur_texture;\r\n`;
             ev_c += `aplsur${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "alpsur_texture");\r\n`;
             ev_d += `texture_set_stage(aplsur${houz}_uniform, tex_aplsur);\r\n`;
             dp += "tex_aplsur = surface_get_texture(application_surface);\r\n";
-            finished[0] = true;
             break;
-          case "BufferA":
-            if (!bf[0]) {
-              showModal(translations[currentLanguage]['error'], translations[currentLanguage]['bufferANotConfigured']);
-              return ["", "", "", "", ""];
-            }
+          case "BufferA":  
             code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferA");
-            if (finished[1]) break;
-
             pre += "uniform sampler2D bufferA;\r\n";
             ev_c += `bufferA${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferA");\r\n`;
             ev_d += `texture_set_stage(bufferA${houz}_uniform, tex_bufferA);\r\n`;
             dp += "tex_bufferA = surface_get_texture(surface_bfA);\r\n";
             break;
           case "BufferB":
-            if (!bf[1]) {
-              showModal(translations[currentLanguage]['error'], translations[currentLanguage]['bufferBNotConfigured']);
-              return ["", "", "", "", ""];
-            }
             code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferB");
             pre += "uniform sampler2D bufferB;\r\n";
             ev_c += `bufferB${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferB");\r\n`;
@@ -2488,10 +2475,6 @@ void main()
             dp += "tex_bufferB = surface_get_texture(surface_bfB);\r\n";
             break;
           case "BufferC":
-            if (!bf[2]) {
-              showModal("错误", "BufferC未编辑！");
-              return ["", "", "", "", ""];
-            }
             code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferC");
             pre += "uniform sampler2D bufferC;\r\n";
             ev_c += `bufferC${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferC");\r\n`;
@@ -2499,10 +2482,6 @@ void main()
             dp += "tex_bufferC = surface_get_texture(surface_bfC);\r\n";
             break;
           case "BufferD":
-            if (!bf[3]) {
-              showModal("错误", "BufferD未编辑！");
-              return ["", "", "", "", ""];
-            }
             code = code.replace(new RegExp(`iChannel${i}`, 'g'), "bufferD");
             pre += "uniform sampler2D bufferD;\r\n";
             ev_c += `bufferD${houz}_uniform = shader_get_sampler_index(shd_${_shadername}${houz}, "bufferD");\r\n`;

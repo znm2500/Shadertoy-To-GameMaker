@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+·<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -2263,11 +2263,10 @@ void main()
 
 
       // 提取mainImage的参数名并替换
-      const paramMatch = code.match(/mainImage\s*\(\s*out\s+\w+\s+(\w+)\s*,\s*in\s+vec2\s+(\w+)\s*\)/);
+      const paramMatch = code.match(/mainImage\s*\(\s*(?:out\s+)?vec4\s+(\w+)\s*,\s*(?:in\s+)?vec2\s+(\w+)\s*\)/);
       if (paramMatch) {
         const outVar = paramMatch[1];
         const inVar = paramMatch[2];
-
         const bodyMatch = code.match(/void\s+mainImage\s*\([^\)]*\)\s*\{(?<body>.*?)\}/s);
         if (bodyMatch && bodyMatch.groups) {
 

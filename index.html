@@ -1337,6 +1337,7 @@
         'ShaderNameEmpty': 'Shader名称不能为空，请输入名称。',
         'ShaderNameInvalid': 'Shader名称无效，请输入有效的名称。',
         'ShaderNameToolong': 'Shader名称过长，请输入不超过20个字符的名称。',
+        'imageNotConfigured': '未进行代码转换，请先完成代码转换再导出。',
       },
       'en': {
         'title': 'Shadertoy To GameMaker',
@@ -1383,6 +1384,7 @@
         'ShaderNameEmpty': 'Shader name cannot be empty, please enter a name.',
         'ShaderNameInvalid': 'Invalid shader name, please enter a valid name.',
         'ShaderNameToolong': 'Shader name is too long, please enter a name with no more than 20 characters.',
+        'imageNotConfigured': 'Code conversion not performed, please complete code conversion before exporting.',
       }
     };
 
@@ -1933,7 +1935,7 @@ void main()
         } else if (_shadername.length > 20) {
           showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameToolong']);
           return;
-        } else if (_shadername.match(/[^a-zA-Z0-9_]/)) {
+        } else if (_shadername.match(/[^a-zA-Z0-9_]/)||_shadername[0].match(/[0-9]/)) {
           showModal(translations[currentLanguage]['error'], translations[currentLanguage]['ShaderNameInvalid']);
           return;
         }
@@ -2051,7 +2053,7 @@ void main()
         dic[code_name][1] = this.value;
       }
 
-      if (this.value.match(/[^a-zA-Z0-9_]/)) {
+      if (this.value.match(/[^a-zA-Z0-9_]/)||this.value[0].match(/[0-9]/)) {
         showModal(translations[currentLanguage]['notification'], translations[currentLanguage]['NameInvalid']);
         this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
       }

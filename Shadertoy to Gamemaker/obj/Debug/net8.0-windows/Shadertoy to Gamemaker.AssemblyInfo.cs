@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2025 znm2500")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("用于便捷把shadertoy转化为yymps")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76d0e716da6c3e530340d73ace03bb6669b8064a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fd7adc9269aec93a0e18cb34041e04a78c73e80")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shadertoy_to_Gamemaker Tool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shadertoy to Gamemaker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
